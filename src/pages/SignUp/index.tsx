@@ -52,9 +52,14 @@ const SignUp: React.FC = () => {
         abortEarly: false,
       });
 
-      // await api.post('/users', data);
+      await api.post('/users', data);
 
-      // history.push('/');
+      Alert.alert(
+        'Sucesso!',
+        'Cadastro realizado com sucesso, fazer login na aplicação',
+      );
+
+      navigation.goBack();
     } catch (err) {
       if (err instanceof Yup.ValidationError) {
         const errors = getValidationErrors(err);
@@ -64,7 +69,7 @@ const SignUp: React.FC = () => {
 
       Alert.alert(
         'Erro na autenticação',
-        'Ocorreu um erro ao fazer login, cheque as credenciais.',
+        'Ocorreu um erro ao fazer a criação da conta, favor tentar novamente mais tarde.',
       );
     }
   }, []);
